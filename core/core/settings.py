@@ -53,7 +53,9 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework.authtoken',
     'accounts',
-    'events'
+    'events',
+    'django_celery_results',
+    'django_celery_beat'
 ]
 
 MIDDLEWARE = [
@@ -96,6 +98,16 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# # Celery Configuration
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Use your broker URL here
+
+# # Optional: Configure other Celery settings as needed
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TIMEZONE = 'UTC'
 
 # DATABASES = {
 #     "default": dj_database_url.parse("postgres://prody_test_db_user:kmF8QkIK7Gpmg0Tspf1fuso98RQiF7Ef@dpg-ck0n4m36fquc738cg540-a.oregon-postgres.render.com/prody_test_db")
@@ -154,3 +166,17 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CELERY SETTINGS
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Kolkata'
+
+CELERY_RESULT_BACKEND = 'django-db'
+
+# CELERY BEAT SETTINGS
+
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'

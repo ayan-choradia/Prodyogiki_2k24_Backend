@@ -10,6 +10,12 @@ from django.contrib.auth import authenticate
 from django.core.exceptions import ObjectDoesNotExist
 from .models import CustomUser
 from rest_framework.authtoken.models import Token
+from .tasks import test_func
+
+
+def test_func_celery(request):
+    test_func.delay()
+    return HttpResponse("Done")
 
 
 class RegisterUserView(generics.CreateAPIView):
