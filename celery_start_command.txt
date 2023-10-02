@@ -1,0 +1,10 @@
+Step 1:
+    Connect to your redis server and make sure the redis is configured in your path (installed in C drive)
+
+Step 2: To start the server run the following command in the core directory (example : PS H:\"path-to-your-project"\core>): 
+`celery -A core.celery worker --pool=solo -l info` {for windows}
+`celery -A core.celery worker  -l info` {for rest}
+
+
+for beat tasks :
+`celery -A core beat -l info`
