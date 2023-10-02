@@ -10,12 +10,17 @@ from django.contrib.auth import authenticate
 from django.core.exceptions import ObjectDoesNotExist
 from .models import CustomUser
 from rest_framework.authtoken.models import Token
-from .tasks import test_func
+from .tasks import test_func, send_mail_func
 
 
 def test_func_celery(request):
     test_func.delay()
     return HttpResponse("Done")
+
+
+def send_mail_to_all(request):
+    send_mail_func.delay()
+    return HttpResponse('Sent')
 
 
 class RegisterUserView(generics.CreateAPIView):

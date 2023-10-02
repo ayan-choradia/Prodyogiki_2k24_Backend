@@ -8,3 +8,8 @@ Step 2: To start the server run the following command in the core directory (exa
 
 for beat tasks :
 `celery -A core beat -l info`
+
+
+
+
+"penx gktv vxgn nqnm"
